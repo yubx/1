@@ -1,0 +1,2 @@
+AKS[[:space:]]1(1).dxf filter=lfs diff=lfs merge=lfs -text
+AKS[[:space:]]1(1).html filter=lfs diff=lfs merge=lfs -text
