@@ -1,0 +1,47 @@
+SuperAnimalConversionTables: null
+Task: FishTail
+TrainingFraction:
+- 0.95
+alphavalue: 0.7
+batch_size: 8
+bodyparts:
+- Tail_base
+- Tail_mid
+- Tail_tip
+colormap: rainbow
+corner2move2:
+- 50
+- 50
+cropping: false
+date: May26
+default_augmenter: default
+default_net_type: resnet_50
+detector_batch_size: 1
+detector_snapshotindex: -1
+dotsize: 12
+engine: pytorch
+identity: null
+iteration: 0
+move2corner: true
+multianimalproject: false
+numframes2pick: 20
+numindividuals: 1
+pcutoff: 0.6
+project_path: C:\Users\Administrator\Desktop\FishTailProject\FishTail-YourName-2026-05-26
+scorer: YourName
+skeleton:
+- - Tail_base
+  - Tail_mid
+- - Tail_mid
+  - Tail_tip
+skeleton_color: black
+snapshotindex: -1
+start: 0
+stop: 1
+video_sets:
+  C:\Users\Administrator\Desktop\FishTailProject\FishTail-YourName-2026-05-26\videos\1.mp4:
+    crop: 0, 720, 0, 1280
+x1: 0
+x2: 640
+y1: 277
+y2: 624

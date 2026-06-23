@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "trails": {
+    "blending": "translucent",
+    "head_length": 50,
+    "opacity": 1.0,
+    "tail_length": 50,
+    "tail_width": 6.0,
+    "visible": false
+  }
+}

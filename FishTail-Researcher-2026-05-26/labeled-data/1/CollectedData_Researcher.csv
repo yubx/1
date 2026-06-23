@@ -1,0 +1,5 @@
+scorer,,,Researcher,Researcher,Researcher,Researcher,Researcher,Researcher
+bodyparts,,,Tail_base,Tail_base,Tail_mid,Tail_mid,Tail_tip,Tail_tip
+coords,,,x,y,x,y,x,y
+labeled-data,1,img014.png,334.79824561403507,943.7807017543859,359.5,934.7982456140351,377.4649122807017,921.3245614035087
+labeled-data,1,img299.png,541.3947368421052,751.7807017543861,530.1666666666667,727.0789473684212,516.6929824561403,693.3947368421053
