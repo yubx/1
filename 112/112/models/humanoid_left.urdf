@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<robot name="humanoid_left">
+  <material name="cloth"><color rgba="0.2 0.6 0.9 1.0"/></material>
+  <material name="dark_cloth"><color rgba="0.05 0.15 0.35 1.0"/></material>
+  <material name="skin"><color rgba="0.90 0.78 0.62 1.0"/></material>
+  <material name="glove"><color rgba="1.0 0.85 0.05 1.0"/></material>
+  <material name="black"><color rgba="0.02 0.02 0.02 1.0"/></material>
+  <material name="white"><color rgba="0.95 0.95 0.95 1.0"/></material>
+  <material name="racket_mat"><color rgba="0.05 0.05 0.05 1.0"/></material>
+
+  <link name="torso">
+    <inertial><mass value="12"/><inertia ixx="0.12" ixy="0" ixz="0" iyy="0.10" iyz="0" izz="0.08"/></inertial>
+    <visual><geometry><box size="0.38 0.26 0.52"/></geometry><material name="cloth"/></visual>
+    <collision><geometry><box size="0.38 0.26 0.52"/></geometry></collision>
+  </link>
+
+  <link name="pelvis">
+    <inertial><mass value="6"/><inertia ixx="0.06" ixy="0" ixz="0" iyy="0.05" iyz="0" izz="0.04"/></inertial>
+    <visual><geometry><box size="0.34 0.28 0.22"/></geometry><material name="dark_cloth"/></visual>
+    <collision><geometry><box size="0.34 0.28 0.22"/></geometry></collision>
+  </link>
+  <joint name="waist_joint" type="fixed"><parent link="torso"/><child link="pelvis"/><origin xyz="0 0 -0.37"/></joint>
+
+  <link name="neck">
+    <inertial><mass value="0.7"/><inertia ixx="0.004" ixy="0" ixz="0" iyy="0.004" iyz="0" izz="0.004"/></inertial>
+    <visual><geometry><cylinder radius="0.055" length="0.12"/></geometry><material name="skin"/></visual>
+    <collision><geometry><cylinder radius="0.055" length="0.12"/></geometry></collision>
+  </link>
+  <joint name="neck_joint" type="fixed"><parent link="torso"/><child link="neck"/><origin xyz="0 0 0.32"/></joint>
+
+  <link name="head">
+    <inertial><mass value="1.6"/><inertia ixx="0.016" ixy="0" ixz="0" iyy="0.016" iyz="0" izz="0.016"/></inertial>
+    <visual><geometry><sphere radius="0.15"/></geometry><material name="skin"/></visual>
+    <collision><geometry><sphere radius="0.15"/></geometry></collision>
+  </link>
+  <joint name="head_joint" type="fixed"><parent link="neck"/><child link="head"/><origin xyz="0 0 0.14"/></joint>
+
+  <link name="left_eye">
+    <inertial><mass value="0.02"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+    <visual><geometry><sphere radius="0.032"/></geometry><material name="white"/></visual>
+    <collision><geometry><sphere radius="0.032"/></geometry></collision>
+  </link>
+  <joint name="left_eye_joint" type="fixed"><parent link="head"/><child link="left_eye"/><origin xyz="0.055 -0.12 0.035"/></joint>
+
+  <link name="right_eye">
+    <inertial><mass value="0.02"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+    <visual><geometry><sphere radius="0.032"/></geometry><material name="white"/></visual>
+    <collision><geometry><sphere radius="0.032"/></geometry></collision>
+  </link>
+  <joint name="right_eye_joint" type="fixed"><parent link="head"/><child link="right_eye"/><origin xyz="-0.055 -0.12 0.035"/></joint>
+
+  
+  <link name="left_thigh">
+    <inertial><mass value="4"/><inertia ixx="0.035" ixy="0" ixz="0" iyy="0.035" iyz="0" izz="0.025"/></inertial>
+    <visual><origin xyz="0 0 -0.18"/><geometry><cylinder radius="0.075" length="0.36"/></geometry><material name="cloth"/></visual>
+    <collision><origin xyz="0 0 -0.18"/><geometry><cylinder radius="0.075" length="0.36"/></geometry></collision>
+  </link>
+  <joint name="left_hip" type="revolute">
+    <parent link="pelvis"/><child link="left_thigh"/>
+    <origin xyz="0 -0.11 -0.12"/><axis xyz="1 0 0"/>
+    <limit lower="-0.9" upper="0.9" effort="120" velocity="2.5"/>
+  </joint>
+  <link name="left_calf">
+    <inertial><mass value="3"/><inertia ixx="0.025" ixy="0" ixz="0" iyy="0.025" iyz="0" izz="0.018"/></inertial>
+    <visual><origin xyz="0 0 -0.18"/><geometry><cylinder radius="0.06" length="0.36"/></geometry><material name="cloth"/></visual>
+    <collision><origin xyz="0 0 -0.18"/><geometry><cylinder radius="0.06" length="0.36"/></geometry></collision>
+  </link>
+  <joint name="left_knee" type="revolute">
+    <parent link="left_thigh"/><child link="left_calf"/>
+    <origin xyz="0 0 -0.36"/><axis xyz="1 0 0"/>
+    <limit lower="0" upper="1.4" effort="100" velocity="2.5"/>
+  </joint>
+  <link name="left_foot">
+    <inertial><mass value="1"/><inertia ixx="0.008" ixy="0" ixz="0" iyy="0.008" iyz="0" izz="0.006"/></inertial>
+    <visual><origin xyz="0 -0.04 -0.04"/><geometry><box size="0.16 0.28 0.08"/></geometry><material name="black"/></visual>
+    <collision><origin xyz="0 -0.04 -0.04"/><geometry><box size="0.16 0.28 0.08"/></geometry></collision>
+  </link>
+  <joint name="left_ankle" type="revolute">
+    <parent link="left_calf"/><child link="left_foot"/>
+    <origin xyz="0 0 -0.36"/><axis xyz="1 0 0"/>
+    <limit lower="-0.5" upper="0.5" effort="70" velocity="2.5"/>
+  </joint>
+
+  
+  <link name="right_thigh">
+    <inertial><mass value="4"/><inertia ixx="0.035" ixy="0" ixz="0" iyy="0.035" iyz="0" izz="0.025"/></inertial>
+    <visual><origin xyz="0 0 -0.18"/><geometry><cylinder radius="0.075" length="0.36"/></geometry><material name="cloth"/></visual>
+    <collision><origin xyz="0 0 -0.18"/><geometry><cylinder radius="0.075" length="0.36"/></geometry></collision>
+  </link>
+  <joint name="right_hip" type="revolute">
+    <parent link="pelvis"/><child link="right_thigh"/>
+    <origin xyz="0 0.11 -0.12"/><axis xyz="1 0 0"/>
+    <limit lower="-0.9" upper="0.9" effort="120" velocity="2.5"/>
+  </joint>
+  <link name="right_calf">
+    <inertial><mass value="3"/><inertia ixx="0.025" ixy="0" ixz="0" iyy="0.025" iyz="0" izz="0.018"/></inertial>
+    <visual><origin xyz="0 0 -0.18"/><geometry><cylinder radius="0.06" length="0.36"/></geometry><material name="cloth"/></visual>
+    <collision><origin xyz="0 0 -0.18"/><geometry><cylinder radius="0.06" length="0.36"/></geometry></collision>
+  </link>
+  <joint name="right_knee" type="revolute">
+    <parent link="right_thigh"/><child link="right_calf"/>
+    <origin xyz="0 0 -0.36"/><axis xyz="1 0 0"/>
+    <limit lower="0" upper="1.4" effort="100" velocity="2.5"/>
+  </joint>
+  <link name="right_foot">
+    <inertial><mass value="1"/><inertia ixx="0.008" ixy="0" ixz="0" iyy="0.008" iyz="0" izz="0.006"/></inertial>
+    <visual><origin xyz="0 -0.04 -0.04"/><geometry><box size="0.16 0.28 0.08"/></geometry><material name="black"/></visual>
+    <collision><origin xyz="0 -0.04 -0.04"/><geometry><box size="0.16 0.28 0.08"/></geometry></collision>
+  </link>
+  <joint name="right_ankle" type="revolute">
+    <parent link="right_calf"/><child link="right_foot"/>
+    <origin xyz="0 0 -0.36"/><axis xyz="1 0 0"/>
+    <limit lower="-0.5" upper="0.5" effort="70" velocity="2.5"/>
+  </joint>
+
+  
+  <link name="left_upper_arm">
+    <inertial><mass value="1.5"/><inertia ixx="0.014" ixy="0" ixz="0" iyy="0.014" iyz="0" izz="0.010"/></inertial>
+    <visual><origin xyz="0 0 -0.16"/><geometry><cylinder radius="0.055" length="0.32"/></geometry><material name="cloth"/></visual>
+    <collision><origin xyz="0 0 -0.16"/><geometry><cylinder radius="0.055" length="0.32"/></geometry></collision>
+  </link>
+  <joint name="left_shoulder_pitch" type="revolute">
+    <parent link="torso"/><child link="left_upper_arm"/>
+    <origin xyz="0 -0.24 0.18"/><axis xyz="0 1 0"/>
+    <limit lower="-1.8" upper="1.8" effort="120" velocity="4.0"/>
+  </joint>
+  <link name="left_forearm">
+    <inertial><mass value="1.1"/><inertia ixx="0.012" ixy="0" ixz="0" iyy="0.012" iyz="0" izz="0.008"/></inertial>
+    <visual><origin xyz="0 0 -0.15"/><geometry><cylinder radius="0.048" length="0.30"/></geometry><material name="cloth"/></visual>
+    <collision><origin xyz="0 0 -0.15"/><geometry><cylinder radius="0.048" length="0.30"/></geometry></collision>
+  </link>
+  <joint name="left_elbow" type="revolute">
+    <parent link="left_upper_arm"/><child link="left_forearm"/>
+    <origin xyz="0 0 -0.32"/><axis xyz="0 1 0"/>
+    <limit lower="0" upper="1.8" effort="100" velocity="4.0"/>
+  </joint>
+  <link name="left_hand">
+    <inertial><mass value="0.55"/><inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005"/></inertial>
+    <visual><geometry><box size="0.15 0.17 0.12"/></geometry><material name="glove"/></visual>
+    <collision><geometry><box size="0.15 0.17 0.12"/></geometry></collision>
+  </link>
+  <joint name="left_wrist" type="revolute">
+    <parent link="left_forearm"/><child link="left_hand"/>
+    <origin xyz="0 0 -0.32"/><axis xyz="0 1 0"/>
+    <limit lower="-0.9" upper="0.9" effort="80" velocity="4.0"/>
+  </joint>
+  
+  <link name="left_racket">
+    <inertial><mass value="0.25"/><inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/></inertial>
+    <visual><geometry><box size="0.10 0.38 0.025"/></geometry><material name="racket_mat"/></visual>
+    <collision><geometry><box size="0.10 0.38 0.025"/></geometry></collision>
+  </link>
+  <joint name="left_racket_joint" type="fixed">
+    <parent link="left_hand"/><child link="left_racket"/>
+    <origin xyz="0 0 -0.25"/>
+  </joint>
+
+
+  
+  <link name="right_upper_arm">
+    <inertial><mass value="1.5"/><inertia ixx="0.014" ixy="0" ixz="0" iyy="0.014" iyz="0" izz="0.010"/></inertial>
+    <visual><origin xyz="0 0 -0.16"/><geometry><cylinder radius="0.055" length="0.32"/></geometry><material name="cloth"/></visual>
+    <collision><origin xyz="0 0 -0.16"/><geometry><cylinder radius="0.055" length="0.32"/></geometry></collision>
+  </link>
+  <joint name="right_shoulder_pitch" type="revolute">
+    <parent link="torso"/><child link="right_upper_arm"/>
+    <origin xyz="0 0.24 0.18"/><axis xyz="0 1 0"/>
+    <limit lower="-1.8" upper="1.8" effort="120" velocity="4.0"/>
+  </joint>
+  <link name="right_forearm">
+    <inertial><mass value="1.1"/><inertia ixx="0.012" ixy="0" ixz="0" iyy="0.012" iyz="0" izz="0.008"/></inertial>
+    <visual><origin xyz="0 0 -0.15"/><geometry><cylinder radius="0.048" length="0.30"/></geometry><material name="cloth"/></visual>
+    <collision><origin xyz="0 0 -0.15"/><geometry><cylinder radius="0.048" length="0.30"/></geometry></collision>
+  </link>
+  <joint name="right_elbow" type="revolute">
+    <parent link="right_upper_arm"/><child link="right_forearm"/>
+    <origin xyz="0 0 -0.32"/><axis xyz="0 1 0"/>
+    <limit lower="0" upper="1.8" effort="100" velocity="4.0"/>
+  </joint>
+  <link name="right_hand">
+    <inertial><mass value="0.55"/><inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005"/></inertial>
+    <visual><geometry><box size="0.15 0.17 0.12"/></geometry><material name="glove"/></visual>
+    <collision><geometry><box size="0.15 0.17 0.12"/></geometry></collision>
+  </link>
+  <joint name="right_wrist" type="revolute">
+    <parent link="right_forearm"/><child link="right_hand"/>
+    <origin xyz="0 0 -0.32"/><axis xyz="0 1 0"/>
+    <limit lower="-0.9" upper="0.9" effort="80" velocity="4.0"/>
+  </joint>
+  
+
+</robot>
